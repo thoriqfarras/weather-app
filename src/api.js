@@ -1,16 +1,14 @@
 export async function getForecast(city, days) {
-  try {
-    const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=494b4005bb82497883871927232508&q=${city}&days=${days}&aqi=yes`,
-      { mode: 'cors' }
-    );
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-    return error;
+  const response = await fetch(
+    `https://api.weatherapi.com/v1/forecast.json?key=494b4005bb82497883871927232508&q=${city}&days=${days}&aqi=yes`,
+    { mode: 'cors' }
+  );
+  const data = await response.json();
+  if (response.status !== 200) {
+    throw new Error(data.error.message);
   }
+  console.log(data, response);
+  return data;
 }
 
 export function getForecastViaPromise(city, days) {
