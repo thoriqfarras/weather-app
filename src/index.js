@@ -32,3 +32,5 @@ async function searchCity(e) {
 }
 
 document.querySelector('button').addEventListener('click', searchCity);
+
+console.log('Hello World!');
