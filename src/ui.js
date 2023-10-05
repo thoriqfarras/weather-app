@@ -1,5 +1,5 @@
 export default function renderCurrentWeatherInfo({
-  city,
+  location,
   date,
   time,
   temp,
@@ -15,11 +15,11 @@ export default function renderCurrentWeatherInfo({
   sunriseTime,
   sunsetTime,
 }) {
-  const cityHeader = document.getElementById('city');
-  cityHeader.innerText = city;
+  const locationHeader = document.getElementById('location');
+  locationHeader.innerText = `${location.name}, ${location.country}`;
 
   const dateTimePara = document.getElementById('datetime');
-  dateTimePara.innerText = `${date} ${time}`;
+  dateTimePara.innerText = `${new Date(date).toLocaleDateString()} ${time}`;
 
   const tempPara = document.getElementById('temp');
   tempPara.innerText = `${temp} High: ${tempHigh} Low: ${tempLow} Feels like: ${tempFeel}`;

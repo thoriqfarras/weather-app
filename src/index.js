@@ -9,7 +9,7 @@ async function searchCity(e) {
     try {
       const data = await getForecast(city, 3);
       renderCurrentWeatherInfo({
-        city: data.location.name,
+        location: data.location,
         date: data.location.localtime.split(' ')[0],
         time: data.location.localtime.split(' ')[1],
         temp: data.current.temp_c,
