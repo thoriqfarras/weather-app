@@ -5,14 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
-  <body>
-    <form class="bg-red-600">
-      <label for="search-city" class="font-bold">Enter a city name</label>
-      <input type="text" class="border-black border-2 focus:bg-gray-300" />
-      <button type="button" class="bg-gray-200 font-bold italic text-red-700">
-        Submit
-      </button>
-    </form>
+  <body class="bg-gradient-to-t from-blue-200 to-blue-700 h-screen">
+    <!-- Search bar -->
+    <section class="w-screen flex justify-center my-4">
+      <form
+        class="h-14 flex gap-2 bg-blue-400 rounded-[2rem] p-4 opacity-70 hover:opacity-100 [&:has(input:focus)]:opacity-100"
+      >
+        <input
+          type="text"
+          class="bg-transparent h-full block placeholder:text-zinc-100 focus:outline-none text-white focus:opacity-100"
+          placeholder="Enter a city..."
+        />
+        <button class="h-full block">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="h-full fill-zinc-100"
+          >
+            <title>Search</title>
+            <path
+              d="M9.5,4C13.09,4 16,6.91 16,10.5C16,12.12 15.41,13.6 14.43,14.73L20.08,20.38L19.37,21.09L13.72,15.44C12.59,16.41 11.11,17 9.5,17C5.91,17 3,14.09 3,10.5C3,6.91 5.91,4 9.5,4M9.5,5C6.46,5 4,7.46 4,10.5C4,13.54 6.46,16 9.5,16C12.54,16 15,13.54 15,10.5C15,7.46 12.54,5 9.5,5Z"
+            />
+          </svg>
+        </button>
+      </form>
+    </section>
     <h1 id="city"></h1>
     <p id="datetime"></p>
     <p id="temp"></p>
@@ -22,7 +39,5 @@
     <p id="aqi"></p>
     <p id="humidity"></p>
     <p id="sun"></p>
-    <p>Hello World!!!</p>
-    <p>Hi Moon!!</p>
   </body>
 </html>
