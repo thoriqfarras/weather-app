@@ -32,7 +32,7 @@
     </section>
 
     <!-- Hero -->
-    <section class="mx-auto w-fit">
+    <section class="mx-auto w-fit mb-8">
       <h1
         id="location"
         class="text-zinc-100 font-bold text-4xl mb-2 text-center"
@@ -42,6 +42,30 @@
       <h2 id="datetime" class="text-zinc-400 text-lg opacity-70 text-center">
         Monday 17 August 2023 | 19:45
       </h2>
+    </section>
+
+    <img
+      id="condition-icon"
+      class="mx-auto w-fit mb-8"
+      src="#"
+      alt="condition icon"
+    />
+
+    <section
+      class="mx-auto grid grid-cols-3 grid-rows-2 h-fit w-fit gap-x-8 gap-y-2 place-items-center [&>*]:text-center"
+    >
+      <p class="text-zinc-100 text-xl opacity-50">Low</p>
+      <p id="condition" class="text-zinc-100 font-bold text-3xl">Clear</p>
+      <p class="text-zinc-100 text-xl opacity-50">High</p>
+      <p id="temp-low" class="text-zinc-100 text-xl opacity-50">29&deg;C</p>
+      <p id="temp-current" class="text-zinc-100 font-bold text-4xl">33&deg;C</p>
+      <p id="temp-high" class="text-zinc-100 text-xl opacity-50">37&deg;C</p>
+      <p
+        id="temp-feels"
+        class="col-start-2 col-span-1 text-zinc-100 text-lg opacity-50"
+      >
+        Feels like 41&deg;C
+      </p>
     </section>
 
     <h1 id="city"></h1>

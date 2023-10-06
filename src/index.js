@@ -14,7 +14,7 @@ async function searchCity(e) {
         time: data.location.localtime.split(' ')[1],
         temp: data.current.temp_c,
         tempHigh: data.forecast.forecastday[0].day.maxtemp_c,
-        tempLow: data.forecast.forecastday[0].day.maxtemp_c,
+        tempLow: data.forecast.forecastday[0].day.mintemp_c,
         tempFeel: data.current.feelslike_c,
         precipitation: data.current.precip_mm,
         windSpeed: data.current.wind_kph,
@@ -24,6 +24,7 @@ async function searchCity(e) {
         humidity: data.current.humidity,
         sunriseTime: data.forecast.forecastday[0].astro.sunrise,
         sunsetTime: data.forecast.forecastday[0].astro.sunset,
+        icon: data.current.condition.icon,
       });
     } catch (error) {
       alert(error);
@@ -33,5 +34,3 @@ async function searchCity(e) {
 
 const btn = document.querySelector('button');
 btn.addEventListener('click', searchCity);
-
-console.log(btn.parentElement);
