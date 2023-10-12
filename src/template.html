@@ -52,7 +52,7 @@
     />
 
     <section
-      class="mx-auto grid grid-cols-3 grid-rows-2 h-fit w-fit gap-x-8 gap-y-2 place-items-center [&>*]:text-center"
+      class="mx-auto mb-4 grid grid-cols-3 grid-rows-2 h-fit w-fit gap-x-8 gap-y-2 place-items-center [&>*]:text-center"
     >
       <p class="text-zinc-100 text-xl opacity-50">Low</p>
       <p id="condition" class="text-zinc-100 font-bold text-3xl">Clear</p>
@@ -68,14 +68,230 @@
       </p>
     </section>
 
-    <h1 id="city"></h1>
-    <p id="datetime"></p>
-    <p id="temp"></p>
-    <p id="precipitation"></p>
-    <p id="wind"></p>
-    <p id="uv"></p>
-    <p id="aqi"></p>
-    <p id="humidity"></p>
-    <p id="sun"></p>
+    <!-- Weather Info -->
+    <section
+      class="flex flex-col mb-4 mx-auto px-6 gap-2 md:grid md:grid-cols-2 max-w-4xl md:gap-4"
+    >
+      <div
+        class="flex items-center border-b-2 border-zinc-100 border-opacity-50 text-zinc-100 text-xl pb-1"
+      >
+        <p class="font-bold">Precipitation</p>
+        <p id="precipitation" class="ml-auto">17%</p>
+      </div>
+      <div
+        class="flex items-center gap-2 border-b-2 border-zinc-100 border-opacity-50 text-zinc-100 text-xl pb-1"
+      >
+        <p class="font-bold">Wind</p>
+        <p id="wind" class="ml-auto">12kmh NW</p>
+      </div>
+      <div
+        class="flex items-center border-b-2 border-zinc-100 border-opacity-50 text-zinc-100 text-xl pb-1"
+      >
+        <p class="font-bold">UV Index</p>
+        <p id="uv" class="ml-auto">3</p>
+      </div>
+      <div
+        class="flex items-center border-b-2 border-zinc-100 border-opacity-50 text-zinc-100 text-xl pb-1"
+      >
+        <p class="font-bold">Air Quality Index</p>
+        <p id="aqi" class="ml-auto">3</p>
+      </div>
+      <div
+        class="flex items-center border-b-2 border-zinc-100 border-opacity-50 text-zinc-100 text-xl pb-1"
+      >
+        <p class="font-bold">Humidity</p>
+        <p id="humidity" class="ml-auto">21%</p>
+      </div>
+      <div
+        class="flex items-center border-b-2 border-zinc-100 border-opacity-50 text-zinc-100 text-xl pb-1"
+      >
+        <p class="font-bold">Sunrise | Sunset</p>
+        <p id="sun" class="ml-auto">05:12 | 17:37</p>
+      </div>
+    </section>
+
+    <!-- Forecast Mode Switcher -->
+    <div id="forecast-switch" class="flex w-fit mx-auto mb-6 text-zinc-100">
+      <button id="next-24" class="bg-blue-300 p-2 rounded-l-3xl">
+        Next 24 hrs
+      </button>
+      <button id="next-3" class="bg-blue-300 p-2 rounded-r-3xl opacity-50">
+        Next 3 days
+      </button>
+    </div>
+
+    <!-- <section
+      id="forecast-cards"
+      class="mx-auto flex gap-4 w-[calc(calc(51.71px+16px)*5)] overflow-x-scroll"
+    >
+      <div class="card flex flex-col justify-center text-center gap-1">
+        <p class="time text-zinc-100 opacity-70 text-lg">22:00</p>
+        <img
+          src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+          alt="condition icon"
+          class="condition-icon h-14 aspect-square"
+        />
+        <p class="temp text-2xl font-bold text-zinc-100">30&deg;C</p>
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="fill-blue-500"
+          >
+            <path
+              d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
+            />
+          </svg>
+          <p class="prec text-zinc-100 opacity-70">20%</p>
+        </div>
+      </div>
+      <div class="card flex flex-col justify-center text-center gap-1">
+        <p class="time text-zinc-100 opacity-70 text-lg">22:00</p>
+        <img
+          src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+          alt="condition icon"
+          class="condition-icon h-14 aspect-square"
+        />
+        <p class="temp text-2xl font-bold text-zinc-100">30&deg;C</p>
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="fill-blue-500"
+          >
+            <path
+              d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
+            />
+          </svg>
+          <p class="prec text-zinc-100 opacity-70">20%</p>
+        </div>
+      </div>
+      <div class="card flex flex-col justify-center text-center gap-1">
+        <p class="time text-zinc-100 opacity-70 text-lg">22:00</p>
+        <img
+          src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+          alt="condition icon"
+          class="condition-icon h-14 aspect-square"
+        />
+        <p class="temp text-2xl font-bold text-zinc-100">30&deg;C</p>
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="fill-blue-500"
+          >
+            <path
+              d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
+            />
+          </svg>
+          <p class="prec text-zinc-100 opacity-70">20%</p>
+        </div>
+      </div>
+      <div class="card flex flex-col justify-center text-center gap-1">
+        <p class="time text-zinc-100 opacity-70 text-lg">22:00</p>
+        <img
+          src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+          alt="condition icon"
+          class="condition-icon h-14 aspect-square"
+        />
+        <p class="temp text-2xl font-bold text-zinc-100">30&deg;C</p>
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="fill-blue-500"
+          >
+            <path
+              d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
+            />
+          </svg>
+          <p class="prec text-zinc-100 opacity-70">20%</p>
+        </div>
+      </div>
+      <div class="card flex flex-col justify-center text-center gap-1">
+        <p class="time text-zinc-100 opacity-70 text-lg">22:00</p>
+        <img
+          src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+          alt="condition icon"
+          class="condition-icon h-14 aspect-square"
+        />
+        <p class="temp text-2xl font-bold text-zinc-100">30&deg;C</p>
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="fill-blue-500"
+          >
+            <path
+              d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
+            />
+          </svg>
+          <p class="prec text-zinc-100 opacity-70">20%</p>
+        </div>
+      </div>
+      <div class="card flex flex-col justify-center text-center gap-1">
+        <p class="time text-zinc-100 opacity-70 text-lg">22:00</p>
+        <img
+          src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+          alt="condition icon"
+          class="condition-icon h-14 aspect-square"
+        />
+        <p class="temp text-2xl font-bold text-zinc-100">30&deg;C</p>
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="fill-blue-500"
+          >
+            <path
+              d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
+            />
+          </svg>
+          <p class="prec text-zinc-100 opacity-70">20%</p>
+        </div>
+      </div>
+      <div class="card flex flex-col justify-center text-center gap-1">
+        <p class="time text-zinc-100 opacity-70 text-lg">22:00</p>
+        <img
+          src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+          alt="condition icon"
+          class="condition-icon h-14 aspect-square"
+        />
+        <p class="temp text-2xl font-bold text-zinc-100">30&deg;C</p>
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="fill-blue-500"
+          >
+            <path
+              d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
+            />
+          </svg>
+          <p class="prec text-zinc-100 opacity-70">20%</p>
+        </div>
+      </div>
+      <div class="card flex flex-col justify-center text-center gap-1">
+        <p class="time text-zinc-100 opacity-70 text-lg">22:00</p>
+        <img
+          src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+          alt="condition icon"
+          class="condition-icon h-14 aspect-square"
+        />
+        <p class="temp text-2xl font-bold text-zinc-100">30&deg;C</p>
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="fill-blue-500"
+          >
+            <path
+              d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
+            />
+          </svg>
+          <p class="prec text-zinc-100 opacity-70">20%</p>
+        </div>
+      </div>
+    </section> -->
   </body>
 </html>
