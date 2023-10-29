@@ -21,3 +21,12 @@ export function getForecastViaPromise(city, days) {
       console.log(data);
     });
 }
+
+export async function searchCity(city) {
+  try {
+    const data = await getForecast(city, 3);
+    return data;
+  } catch (error) {
+    throw new Error(error);
+  }
+}

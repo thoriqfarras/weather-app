@@ -203,9 +203,156 @@
     <!-- Forecast cards -->
     <section
       id="forecast"
-      class="flex items-center w-full gap-4 text-zinc-50 justify-center px-6 mb-12 overflow-hidden text-center"
+      class="flex items-center w-full gap-4 text-zinc-50 justify-center px-6 mb-12 flex-col max-w-4xl mx-auto"
     >
-      <svg
+      <!-- <div
+        class="forecast-card w-full flex flex-col bg-blue-200/50 rounded-2xl px-4 py-2 ease-in-out transition-all hover:bg-blue-500"
+      >
+        <div class="flex items-center">
+          <p class="font-bold">Monday, 17 Aug</p>
+          <img
+            src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+            alt="condition icon"
+            class="condition-icon h-10 ml-auto aspect-square"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="h-8 fill-zinc-50 transition-all ease-linear"
+          >
+            <path
+              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            />
+          </svg>
+        </div>
+        <div
+          class="extra max-h-0 overflow-hidden flex flex-col ease-in-out transition-[max-height] md:grid md:grid-cols-2 md:gap-x-4"
+        >
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Precipitation</p>
+            <p id="precipitation" class="ml-auto">17%</p>
+          </div>
+          <div class="flex items-center gap-2 text-zinc-100 text-lg pb-1">
+            <p class="">Wind</p>
+            <p id="wind" class="ml-auto">12kmh NW</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">UV Index</p>
+            <p id="uv" class="ml-auto">3</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Air Quality Index</p>
+            <p id="aqi" class="ml-auto">3</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Humidity</p>
+            <p id="humidity" class="ml-auto">21%</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Sunrise | Sunset</p>
+            <p id="sun" class="ml-auto">05:12 | 17:37</p>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div
+        class="forecast-card w-full flex flex-col bg-blue-200/50 rounded-2xl px-4 py-2 ease-in-out transition-all hover:bg-blue-500"
+      >
+        <div class="flex items-center">
+          <p class="font-bold">Monday, 17 Aug</p>
+          <img
+            src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+            alt="condition icon"
+            class="condition-icon h-10 ml-auto aspect-square"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="h-8 fill-zinc-50 transition-all ease-linear"
+          >
+            <path
+              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            />
+          </svg>
+        </div>
+        <div
+          class="extra max-h-0 overflow-hidden flex flex-col ease-in-out transition-[max-height] md:grid md:grid-cols-2 md:gap-x-4"
+        >
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Precipitation</p>
+            <p id="precipitation" class="ml-auto">17%</p>
+          </div>
+          <div class="flex items-center gap-2 text-zinc-100 text-lg pb-1">
+            <p class="">Wind</p>
+            <p id="wind" class="ml-auto">12kmh NW</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">UV Index</p>
+            <p id="uv" class="ml-auto">3</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Air Quality Index</p>
+            <p id="aqi" class="ml-auto">3</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Humidity</p>
+            <p id="humidity" class="ml-auto">21%</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Sunrise | Sunset</p>
+            <p id="sun" class="ml-auto">05:12 | 17:37</p>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div
+        class="forecast-card w-full flex flex-col bg-blue-200/50 rounded-2xl px-4 py-2 ease-in-out transition-all hover:bg-blue-500"
+      >
+        <div class="flex items-center">
+          <p class="font-bold">Monday, 17 Aug</p>
+          <img
+            src="//cdn.weatherapi.com/weather/64x64/night/176.png"
+            alt="condition icon"
+            class="condition-icon h-10 ml-auto aspect-square"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="h-8 fill-zinc-50 transition-all ease-linear"
+          >
+            <path
+              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            />
+          </svg>
+        </div>
+        <div
+          class="extra max-h-0 overflow-hidden flex flex-col ease-in-out transition-[max-height] md:grid md:grid-cols-2 md:gap-x-4"
+        >
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Precipitation</p>
+            <p id="precipitation" class="ml-auto">17%</p>
+          </div>
+          <div class="flex items-center gap-2 text-zinc-100 text-lg pb-1">
+            <p class="">Wind</p>
+            <p id="wind" class="ml-auto">12kmh NW</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">UV Index</p>
+            <p id="uv" class="ml-auto">3</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Air Quality Index</p>
+            <p id="aqi" class="ml-auto">3</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Humidity</p>
+            <p id="humidity" class="ml-auto">21%</p>
+          </div>
+          <div class="flex items-center text-zinc-100 text-lg pb-1">
+            <p class="">Sunrise | Sunset</p>
+            <p id="sun" class="ml-auto">05:12 | 17:37</p>
+          </div>
+        </div>
+      </div> -->
+      <!-- <svg
         id="forecast-control-left"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -452,7 +599,7 @@
         class="h-8 fill-zinc-50 transition-all ease-linear -rotate-90 cursor-pointer"
       >
         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-      </svg>
+      </svg> -->
     </section>
 
     <footer class="flex w-fit mx-auto gap-1 items-center h-20">
