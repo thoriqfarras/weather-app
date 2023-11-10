@@ -1,7 +1,9 @@
+import { format } from 'date-fns';
 import { searchCity } from './api';
 
 export default function App() {
   let activeSlideIdx = 0;
+  let lastClickedForecastControl = '';
   let weatherData = {};
 
   function convertTo24hr(time) {
@@ -67,7 +69,11 @@ export default function App() {
     locationHeader.innerText = `${location.name}, ${location.country}`;
 
     const dateTimePara = document.getElementById('datetime');
-    dateTimePara.innerText = `${new Date(date).toLocaleDateString()} ${time}`;
+    console.log(time);
+    dateTimePara.innerText = `${format(
+      new Date(date),
+      'EEEE d MMMM yyyy'
+    )} ${time}`;
 
     const conditionIcon = document.getElementById('condition-icon');
     conditionIcon.setAttribute('src', icon);
@@ -108,7 +114,9 @@ export default function App() {
   function createHourlyCard({ time, condition, icon }) {
     const card = document.createElement('div');
     card.classList.add(
-      ...'flex w-full items-center gap-2 sm:flex-col sm:h-full'.split(' ')
+      ...'flex w-full items-center gap-2 sm:flex-col sm:h-full text-center'.split(
+        ' '
+      )
     );
     card.innerHTML = `
     <p class="font-bold sm:order-1">${time}</p>
@@ -131,19 +139,18 @@ export default function App() {
     humidity,
     windSpeed,
     windDir,
-    aqi,
     sunrise,
     sunset,
   }) {
     const div = document.createElement('div');
     div.classList.add(
-      ...'forecast-card w-full flex flex-col bg-blue-200/50 rounded-2xl px-4 py-2 ease-in-out transition-all hover:bg-blue-500'.split(
+      ...'forecast-card w-full flex flex-col bg-blue-200/50 rounded-2xl px-4 py-2 ease-in-out transition-all hover:bg-blue-500 cursor-pointer'.split(
         ' '
       )
     );
     div.innerHTML += `
       <div class="flex items-center">
-        <p class="font-bold">${date}</p>
+        <p class="font-bold">${format(new Date(date), 'EEEE, d MMM')}</p>
         <p class="ml-auto font-bold">${condition}</p>
         <img
           src="${icon}"
@@ -211,7 +218,8 @@ export default function App() {
   }
 
   function renderNext24hrsForecast(forecastDays) {
-    const currentHour = new Date().getHours();
+    const currentHour = weatherData.location.localtime.slice(-5, -3);
+    console.log(currentHour);
     const forecastSection = document.getElementById('forecast');
     forecastSection.classList.remove('flex-col');
     clearForecastSection();
@@ -318,13 +326,13 @@ export default function App() {
       e.target.parentNode.id === 'forecast-control-left'
     ) {
       moveForecastSlides('left');
-      if (activeSlideIdx > 0) activeSlideIdx -= 1;
+      lastClickedForecastControl = 'left';
     } else if (
       e.target.id === 'forecast-control-right' ||
       e.target.parentNode.id === 'forecast-control-right'
     ) {
       moveForecastSlides('right');
-      if (activeSlideIdx < 2) activeSlideIdx += 1;
+      lastClickedForecastControl = 'right';
     }
   }
 
@@ -335,6 +343,12 @@ export default function App() {
     const forecastControlRight = document.getElementById(
       'forecast-control-right'
     );
+
+    if (activeSlideIdx > 0 && lastClickedForecastControl === 'left')
+      activeSlideIdx -= 1;
+    else if (activeSlideIdx < 2 && lastClickedForecastControl === 'right')
+      activeSlideIdx += 1;
+
     if (activeSlideIdx === 0) {
       forecastControlLeft.style.opacity = 0;
       forecastControlLeft.classList.toggle('cursor-pointer');
@@ -347,7 +361,6 @@ export default function App() {
       forecastControlLeft.classList.add('cursor-pointer');
       forecastControlRight.classList.add('cursor-pointer');
     }
-    console.log('hello');
   }
 
   function switchForecastMode(e) {
@@ -372,11 +385,42 @@ export default function App() {
     }
   }
 
+  function updateFooterText() {
+    // Updates the year accordingly in the footer
+    const footer = document.querySelector('footer');
+    const footerText = footer.querySelector('p');
+    footerText.innerText = `${new Date().getFullYear()} \u00A9 Thoriq Farras`;
+  }
+
   const searchBtn = document.querySelector('button');
   searchBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    weatherData = await searchCity(document.querySelector('input').value);
-    renderCurrentWeatherInfo(weatherData);
+    try {
+      weatherData = await searchCity(document.querySelector('input').value);
+      renderCurrentWeatherInfo({
+        location: weatherData.location,
+        date: weatherData.location.localtime.split(' ')[0],
+        time: weatherData.location.localtime.split(' ')[1],
+        temp: weatherData.current.temp_c,
+        tempHigh: weatherData.forecast.forecastday[0].day.maxtemp_c,
+        tempLow: weatherData.forecast.forecastday[0].day.mintemp_c,
+        tempFeel: weatherData.current.feelslike_c,
+        precipitation: weatherData.current.precip_mm,
+        windSpeed: weatherData.current.wind_kph,
+        windDirection: weatherData.current.wind_dir,
+        uvIndex: weatherData.current.uv,
+        aqi: weatherData.current.air_quality['us-epa-index'],
+        humidity: weatherData.current.humidity,
+        sunriseTime: weatherData.forecast.forecastday[0].astro.sunrise,
+        sunsetTime: weatherData.forecast.forecastday[0].astro.sunset,
+        icon: weatherData.current.condition.icon,
+      });
+      renderNext24hrsForecast(weatherData.forecast.forecastday);
+      const slides = document.querySelector('.slides');
+      slides.addEventListener('scrollend', updateForecastControlOpacity);
+    } catch (error) {
+      alert(error);
+    }
   });
 
   const forecastSwitch = document.getElementById('forecast-switch');
@@ -412,4 +456,5 @@ export default function App() {
     const slides = document.querySelector('.slides');
     slides.addEventListener('scrollend', updateForecastControlOpacity);
   });
+  updateFooterText();
 }

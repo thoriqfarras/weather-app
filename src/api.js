@@ -11,17 +11,6 @@ export async function getForecast(city, days) {
   return data;
 }
 
-export function getForecastViaPromise(city, days) {
-  fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=494b4005bb82497883871927232508&q=${city}&days=${days}`,
-    { mode: 'cors' }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
-}
-
 export async function searchCity(city) {
   try {
     const data = await getForecast(city, 3);
