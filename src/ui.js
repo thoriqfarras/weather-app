@@ -91,7 +91,7 @@ export default function App() {
     tempFeelsPara.innerText = `Feels like ${Math.floor(tempFeel)}\u00B0C`;
 
     const precPara = document.getElementById('precipitation');
-    precPara.innerText = `${precipitation}%`;
+    precPara.innerText = `${Math.floor(precipitation)}%`;
 
     const windPara = document.getElementById('wind');
     windPara.innerText = `${Math.round(windSpeed)}kmh ${windDirection}`;
